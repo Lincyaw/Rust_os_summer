@@ -1,0 +1,1 @@
+C:\Users\fay\Documents\GitHub\Rust_os_summer\labproject\os\target\riscv64imac-unknown-none-elf\debug\os: C:\Users\fay\Documents\GitHub\Rust_os_summer\labproject\os\src\asm\entry.asm C:\Users\fay\Documents\GitHub\Rust_os_summer\labproject\os\src\main.rs
