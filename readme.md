@@ -146,7 +146,13 @@ errorsn这个文件要多看看, 裂开来
 
 ## 2020年7月1日10:57:54
 
-`cd /mnt/c/users/fay/documents/github/rust_os_summer/labproject/os`
+```
+cd /mnt/c/users/fay/documents/github/rust_os_summer/labproject/os
+```
+
+
+
+
 
 今天看了看实验的内容, 顺便配置了一下wsl环境, 为以后实验做准备
 
@@ -157,3 +163,43 @@ errorsn这个文件要多看看, 裂开来
 在`lab0`执行`make run`时出现如下问题, 不知道为啥
 
 ![image-20200701112600657](../../source/images/readme/image-20200701112600657.png)
+
+
+
+
+
+
+
+### 2020年7月1日22:28:36
+
+目前发现是wsl版本的问题导致的这个安装不完整. 
+
+现在升级了windows系统, 重新安装了wsl, 用了version2, 不知道行不行. 
+
+搞了一天了, 裂开了.
+
+` rustup target add riscv64imac-unknown-none-elf`
+
+
+
+
+
+
+
+## 2020年7月2日10:44:45
+
+配了一整天的环境, 呜呜呜呜呜。 学校的网真垃圾md。 垃圾
+
+用流量下好了那些包
+
+
+
+
+
+
+
+### 2020年7月2日16:41:00
+
+磕磕绊绊总算完成了习题,
+
+其中迭代器\多线程\错误处理\类型转换\标准库的一些知识点还是很不熟悉, 需要进一步加强
