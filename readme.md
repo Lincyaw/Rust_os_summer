@@ -203,3 +203,59 @@ cd /mnt/c/users/fay/documents/github/rust_os_summer/labproject/os
 磕磕绊绊总算完成了习题,
 
 其中迭代器\多线程\错误处理\类型转换\标准库的一些知识点还是很不熟悉, 需要进一步加强
+
+
+
+
+
+
+
+### 2020年7月2日21:57:08
+
+今天收工, 用rust实现了`learn python the hard way`中的7个习题
+
+其中,第七个是读取文件, python版本中要求用户输入文件路径后再读取, 但是不知道为什么我输入之后就无法找到该文件, 即打开失败; 如果在代码内固定好要读取的文件就成功了. 
+
+```rust
+use std::fs::File;
+use std::io::prelude::*;
+use std::path::Path;
+use std::io::stdin;
+
+fn main() {
+    // 创建指向所需的文件的路径
+    let mut file = String::new();
+    println!("What's your path?");
+    stdin().read_line(&mut file).unwrap();
+
+    let path = Path::new(&file);
+    let display = path.display();
+
+
+    // // 创建指向所需的文件的路径
+    // let path = Path::new("hello.txt");
+    // let display = path.display();
+
+    // 以只读方式打开路径，返回 `io::Result<File>`
+    let mut file = match File::open(&path) {
+        // `io::Error` 的 `description` 方法返回一个描述错误的字符串。
+        Err(why) => panic!("couldn't open {}: {}", display,
+                           why.to_string()),
+        Ok(file) => file,
+    };
+
+    // 读取文件内容到一个字符串，返回 `io::Result<usize>`
+    let mut s = String::new();
+    match file.read_to_string(&mut s) {
+        Err(why) => panic!("couldn't read {}: {}", display,
+                           why.to_string()),
+        Ok(_) => print!("{} contains:\n{}", display, s),
+    }
+
+    // `file` 离开作用域，并且 `hello.txt` 文件将被关闭。
+}
+```
+
+
+
+明天把剩下的几个练习实现一下,  自学rust编程这个阶段就可以告一段落了， 然后到第二个阶段， 自学risc-v系统结构。这个我估计四天左右应该能结束。加油！
