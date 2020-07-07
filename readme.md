@@ -430,3 +430,4 @@ pub static mut TICKS: usize = 0;
 
 今天效率还可以, 下午学习了清华学堂在线慕课中一些os的基础知识.
 
+[os笔记](https://www.notion.so/lincyawer/0dd3231f26a9420d89e642339a5abaf4)
