@@ -1,0 +1,1 @@
+C:\Users\fay\Documents\GitHub\Rust_os_summer\The_spirit_of_rust_coding\csv-read\target\debug\libcsv_read.rlib: C:\Users\fay\Documents\GitHub\Rust_os_summer\The_spirit_of_rust_coding\csv-read\src\lib.rs

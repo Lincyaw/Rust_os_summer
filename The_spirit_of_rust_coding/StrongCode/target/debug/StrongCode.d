@@ -1,0 +1,1 @@
+C:\Users\fay\Documents\GitHub\Rust_os_summer\The_spirit_of_rust_coding\StrongCode\target\debug\StrongCode.exe: C:\Users\fay\Documents\GitHub\Rust_os_summer\The_spirit_of_rust_coding\StrongCode\src\main.rs

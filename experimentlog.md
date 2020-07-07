@@ -132,3 +132,38 @@ fn sbi_call(which: usize, arg0: usize, arg1: usize, arg2: usize) -> usize {
 
 # Lab1
 
+## Q1
+
+```asm
+# Context, scause 和 stval 作为参数传入
+    mv a0, sp
+    csrr a1, scause
+    csrr a2, stval
+    jal  handle_interrupt
+
+    .globl __restore
+# 离开中断
+# 从 Context 中恢复所有寄存器，并跳转至 Context 中 sepc 的位置
+__restore:
+    # 恢复 CSR
+    LOAD    s1, 32
+    LOAD    s2, 33
+    # 思考：为什么不恢复 scause 和 stval？如果不恢复，为什么之前要保存
+    csrw    sstatus, s1
+    csrw    sepc, s2
+```
+
+关于这个问题, scause和stval传给a1和a2只是为了传递参数, 并没有保存到栈中。
+
+再者，中断处理完成之后也没有必要恢复这个中断产生的原因是什么了。
+
+
+
+
+
+## Q2
+
+因为学习过汇编\计组\电子工艺实习, 所以对中断这块相对于其他几个实验是更加了解的。
+
+代码配上注释基本能够知道为什么要这么做。但是如果要自己实现一下的话，可能还有一定的差距。
+
