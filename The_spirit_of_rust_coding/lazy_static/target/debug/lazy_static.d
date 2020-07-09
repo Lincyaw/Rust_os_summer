@@ -1,0 +1,1 @@
+C:\Users\fay\Documents\GitHub\Rust_os_summer\The_spirit_of_rust_coding\lazy_static\target\debug\lazy_static.exe: C:\Users\fay\Documents\GitHub\Rust_os_summer\The_spirit_of_rust_coding\lazy_static\src\main.rs

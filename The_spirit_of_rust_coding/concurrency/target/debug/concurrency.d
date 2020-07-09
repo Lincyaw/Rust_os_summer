@@ -1,0 +1,1 @@
+C:\Users\fay\Documents\GitHub\Rust_os_summer\The_spirit_of_rust_coding\concurrency\target\debug\concurrency.exe: C:\Users\fay\Documents\GitHub\Rust_os_summer\The_spirit_of_rust_coding\concurrency\src\main.rs

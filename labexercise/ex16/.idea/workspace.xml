@@ -2,17 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="974b5bea-bd65-474d-8a7a-6bc1fe1c5852" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/../../The_spirit_of_rust_coding/ReadFileErr/ReadFileErr.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../The_spirit_of_rust_coding/StrongCode/StrongCode.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../The_spirit_of_rust_coding/csv-read/.idea/csv-read.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../The_spirit_of_rust_coding/csv-read/src/main.rs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../The_spirit_of_rust_coding/csv_challenge/csv_challenge.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ex16.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../experimentlog.md" beforeDir="false" afterPath="$PROJECT_DIR$/../../experimentlog.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../readme.md" beforeDir="false" afterPath="$PROJECT_DIR$/../../readme.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main.rs" beforeDir="false" afterPath="$PROJECT_DIR$/src/main.rs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -60,5 +50,13 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="414" y="175" key="#com.intellij.execution.impl.EditConfigurationsDialog/1920.59.1536.832/0.0.1920.1040@0.0.1920.1040" timestamp="1594099395137" />
+    <state x="739" y="261" key="FileChooserDialogImpl" timestamp="1594176757597">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="739" y="261" key="FileChooserDialogImpl/1920.59.1536.832/0.0.1920.1040@0.0.1920.1040" timestamp="1594176757597" />
+    <state x="334" y="203" key="new project wizard" timestamp="1594176805195">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="334" y="203" key="new project wizard/1920.59.1536.832/0.0.1920.1040@0.0.1920.1040" timestamp="1594176805195" />
   </component>
 </project>

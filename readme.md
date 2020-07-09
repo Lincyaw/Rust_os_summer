@@ -431,3 +431,105 @@ pub static mut TICKS: usize = 0;
 今天效率还可以, 下午学习了清华学堂在线慕课中一些os的基础知识.
 
 [os笔记](https://www.notion.so/lincyawer/0dd3231f26a9420d89e642339a5abaf4)
+
+
+
+
+
+## 2020年7月8日11:33:35
+
+## 总结
+
+单纯Rust语言上考虑。
+ 我们在不同情况下解释`&`的意思：
+
+1. 在表达式上，表示的是借用。
+2. 在变量绑定上，表示解地址操作与*类似。
+3. 在类型声明上，表示引用类型。
+4. 在模式匹配上，**无效关键字**
+
+那么`ref`的通用解释是：
+
+1. 在表达式上，**无效关键字**。
+2. 在变量绑定上，表示引用类型。
+3. 在类型声明上，**无效关键字**。
+4. 在模式匹配上，表示引用类型。
+
+非要给区分`ref`和`&`到底哪个是引用，哪个是借用。我们可以先从词性划分，引用我归类为名词，而借用归类为动词。`&A`在表达式上 表示借用A，这是一个动作，那结果就是产出一个引用类型。所以`let ref B`表示声明了一个引用类型，它只能绑定到某次借用动作上。
+
+**所以`ref` 更适合叫引用， `&`叫借用。**
+
+```rust
+#![feature(core_intrinsics)]
+
+fn main() {
+    let x = &false;
+    print_type_name_of(x);
+
+    let &x = &false;
+    print_type_name_of(x);
+
+    let ref x = &false;
+    print_type_name_of(x);
+}
+
+fn print_type_name_of<T>(_: T) {
+    println!("{}", unsafe { std::intrinsics::type_name::<T>() })
+}
+```
+
+```
+&bool
+bool
+&&bool
+```
+
+
+
+
+
+## 2020年7月8日16:30:54
+
+由于看到助教们还在修改实验内容, 以及考虑到实验的形式汇编, 再加上自己实现的那个代码有好多报错， 打算过几天再看实验内容。
+
+现在再复习一下多线程的内容。
+
+
+
+
+
+for in 迭代默认是用的into_iter方法, 是移动(move)
+
+还有`iter()`和`iter_mut()`(允许集合被就地修改)
+
+
+
+
+
+
+
+如下为选择 `Box<T>`，`Rc<T>` 或 `RefCell<T>` 的理由：
+
+- `Rc<T>` 允许相同数据有多个所有者；`Box<T>` 和 `RefCell<T>` 有单一所有者。
+- `Box<T>` 允许在编译时执行不可变或可变借用检查；`Rc<T>`仅允许在编译时执行不可变借用检查；`RefCell<T>` 允许在运行时执行不可变或可变借用检查。
+- 因为 `RefCell<T>` 允许在运行时执行可变借用检查，所以我们可以在即便 `RefCell<T>` 自身是不可变的情况下修改其内部的值。
+
+在不可变值内部改变值就是 **内部可变性** 模式。让我们看看何时内部可变性是有用的，并讨论这是如何成为可能的。
+
+
+
+
+
+### 明日规划
+
+[refcell](https://kaisery.github.io/trpl-zh-cn/ch15-05-interior-mutability.html)
+
+[引用循环与内存l泄露](https://kaisery.github.io/trpl-zh-cn/ch15-06-reference-cycles.html)
+
+[可拓展的并发](https://kaisery.github.io/trpl-zh-cn/ch16-04-extensible-concurrency-sync-and-send.html)
+
+unsafe Rust
+
+清华的os课
+
+看riscv资料
