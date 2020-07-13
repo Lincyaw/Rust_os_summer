@@ -593,3 +593,218 @@ unsaferust从drop检查开始还没看
 虽然不知道这个计划能不能实施成功，大概率是不行的，因为学校的两门课程还有两个实验要完成，但是通过这个计划，我对一整天可以利用的时间有了一个进一步的了解。在这个框架下，我就可以对自己每个时间都要干什么进行调整。比如将上午的两个小时改为做学校的实验。
 
 希望自己能够进入os实习，也能在学校课程中获得好成绩。
+
+
+
+
+
+## 2020年7月11日09:19:17
+
+第一天第一段结束. 重新做了遍实验二, 并且思考了伙伴算法. 然后去看了源码, 但是跟我想象的不太一样, 下午再接着看看
+
+
+
+### 2020年7月11日13:33:04
+
+开始看
+
+
+
+
+
+2020年7月11日15:10:01
+
+这伙伴系统源码没有注释, 加上自己对这个概念还不是很熟悉, 对rust语法也不是很熟悉, 就导致自己不知道他在干嘛. 
+
+打算在网上找找有注释的, 或者c实现的
+
+https://github.com/godspeed1989/buddy_allocator
+
+https://github.com/matianfu/buddy/blob/master/buddy.c
+
+
+
+
+
+## 2020年7月13日08:48:22
+
+昨天处理学校的事务, 忙了一天, 没有学习。 并且今天也起不来了。
+
+现在开始学习，还是能保证上午的两个小时的学习时间的。
+
+
+
+
+
+2020年7月13日17:36:00
+
+今天和同学讨论了一下这个伙伴系统算法源码, 感觉现在自己才有懂进去。
+
+感觉自己今天进步还是蛮大的。
+
+
+
+
+
+`-- --nocapture`用于显示test中的打印串
+
+`test_heap_add`是选定的待test的函数
+
+```
+cargo test test_heap_add -- --nocapture
+```
+
+
+
+### 2020年7月13日21:23:20
+
+
+
+使用了最朴实无华的测试方法: 打印大法
+
+```rust
+running 1 test
+start: 140198663311816,  end: 140198663312840
+end - current_start: 1024
+lowbit: 8, prev_power_of_two(end - current_start): 1024
+
+start: 140198663311824,  end: 140198663312840
+end - current_start: 1016
+lowbit: 16, prev_power_of_two(end - current_start): 512
+
+start: 140198663311840,  end: 140198663312840
+end - current_start: 1000
+lowbit: 32, prev_power_of_two(end - current_start): 512
+
+start: 140198663311872,  end: 140198663312840
+end - current_start: 968
+lowbit: 512, prev_power_of_two(end - current_start): 512
+
+start: 140198663312384,  end: 140198663312840
+end - current_start: 456
+lowbit: 1024, prev_power_of_two(end - current_start): 256
+
+start: 140198663312640,  end: 140198663312840
+end - current_start: 200
+lowbit: 256, prev_power_of_two(end - current_start): 128
+
+start: 140198663312768,  end: 140198663312840
+end - current_start: 72
+lowbit: 128, prev_power_of_two(end - current_start): 64
+
+start: 140198663312832,  end: 140198663312840
+end - current_start: 8
+lowbit: 64, prev_power_of_two(end - current_start): 8
+
+1024
+
+申请
+size: 16
+class: 4
+free_list_len: 32
+存在大小为2^4的块
+
+申请
+size: 16
+class: 4
+free_list_len: 32
+不存在大小为2^4的块
+存在大小为2^5的块
+freelist里大小为5的块被成功取出来了, 首地址是140198663311840
+freelist[4]里存进去了140198663311856
+freelist[4]也里存进去了140198663311840
+
+申请
+size: 16
+class: 4
+free_list_len: 32
+存在大小为2^4的块
+
+申请
+size: 16
+class: 4
+free_list_len: 32
+不存在大小为2^4的块
+不存在大小为2^5的块
+存在大小为2^6的块
+freelist里大小为6的块被成功取出来了, 首地址是140198663312768
+freelist[5]里存进去了140198663312800
+freelist[5]也里存进去了140198663312768
+freelist里大小为5的块被成功取出来了, 首地址是140198663312768
+freelist[4]里存进去了140198663312784
+freelist[4]也里存进去了140198663312768
+
+释放
+size: 16
+class: 4
+current_ptr: 140198663311824
+buddy: 140198663311808
+开始在freelist[4]中找和block邻近的块
+block.value() as usize 140198663311824 不是 buddy
+开始在freelist[4]中找和block邻近的块
+block.value() as usize 140198663312784 不是 buddy
+
+释放
+size: 16
+class: 4
+current_ptr: 140198663311840
+buddy: 140198663311856
+开始在freelist[4]中找和block邻近的块
+block.value() as usize 140198663311840 不是 buddy
+开始在freelist[4]中找和block邻近的块
+block.value() as usize 140198663311824 不是 buddy
+开始在freelist[4]中找和block邻近的块
+block.value() as usize 140198663312784 不是 buddy
+
+释放
+size: 16
+class: 4
+current_ptr: 140198663311856
+buddy: 140198663311840
+开始在freelist[4]中找和block邻近的块
+block.value() as usize 140198663311856 不是 buddy
+开始在freelist[4]中找和block邻近的块
+block.value() as usize 140198663311840 是 buddy
+成功合并了current_ptr和buddy, 合并后的地址为140198663311856
+current_ptr: 140198663311840
+buddy: 140198663311808
+开始在freelist[5]中找和block邻近的块
+block.value() as usize 140198663311840 不是 buddy
+开始在freelist[5]中找和block邻近的块
+block.value() as usize 140198663312800 不是 buddy
+
+释放
+size: 16
+class: 4
+current_ptr: 140198663312768
+buddy: 140198663312784
+开始在freelist[4]中找和block邻近的块
+block.value() as usize 140198663312768 不是 buddy
+开始在freelist[4]中找和block邻近的块
+block.value() as usize 140198663311824 不是 buddy
+开始在freelist[4]中找和block邻近的块
+block.value() as usize 140198663312784 是 buddy
+成功合并了current_ptr和buddy, 合并后的地址为140198663312768
+current_ptr: 140198663312768
+buddy: 140198663312800
+开始在freelist[5]中找和block邻近的块
+block.value() as usize 140198663312768 不是 buddy
+开始在freelist[5]中找和block邻近的块
+block.value() as usize 140198663311840 不是 buddy
+开始在freelist[5]中找和block邻近的块
+block.value() as usize 140198663312800 是 buddy
+成功合并了current_ptr和buddy, 合并后的地址为140198663312768
+current_ptr: 140198663312768
+buddy: 140198663312832
+开始在freelist[6]中找和block邻近的块
+block.value() as usize 140198663312768 不是 buddy
+test test::test_heap_alloc_and_free ... ok
+
+test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 8 filtered out
+```
+
+
+
+
+
+明天正式开始写自己的伙伴系统算法

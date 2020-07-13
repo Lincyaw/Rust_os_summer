@@ -160,3 +160,18 @@ fn lifetime2(){ //&str能够运行, string::from不行
     }
     println!("The longest string is {}", result);
 }
+
+
+
+#[test]
+fn test_t(){ //&str能够运行, string::from不行
+    for current_start in 0..100{
+        let lowbit = if current_start > 0 {
+            current_start & (!current_start + 1)
+        } else {
+            32
+        };
+        println!("{:b}  {:b}",current_start,lowbit);
+    }
+
+}
