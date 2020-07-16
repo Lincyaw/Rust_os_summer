@@ -1,0 +1,1 @@
+C:\Users\fay\Documents\GitHub\Rust_os_summer\The_spirit_of_rust_coding\macro_programing\target\debug\macro_programing.exe: C:\Users\fay\Documents\GitHub\Rust_os_summer\The_spirit_of_rust_coding\macro_programing\src\main.rs

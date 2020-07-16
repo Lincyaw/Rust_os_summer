@@ -1,0 +1,50 @@
+四大基本类型:
+
+`VirtualAddress`
+
+`PhysicalAddress`
+
+`VirtualPageNumber`
+
+`PhysicalPageNumber`
+
+
+
+1. `mut`指针和`const`指针可以通过`from`变为`VirtualAddress`
+
+2. `VirtualPageNumber`和`PhysicalPageNumber`可以通过`from`互相转换
+
+3. `address.rs`中实现了两个宏, 第一个宏为基本类型添加了`From trait`, 可以从页号变为地址也可以从地址变为页号（物理虚拟都可以）
+
+4. 第二个宏为四个基本类型重载了一些算术运算的操作符
+
+   
+
+   万物之源`VirtualAddress`函数:
+
+   ```rust
+   pub fn deref<T>(self) -> &'static mut T
+   pub fn page_offset(&self) -> usize
+   ```
+
+   `PhysicalAddress`函数:
+
+   ```rust
+   pub fn deref_kernel<T>(self) -> &'static mut T //转变为虚拟地址后调用虚拟地址的deref
+   pub fn page_offset(&self) -> usize
+   ```
+
+   `VirtualPageNumber`函数:
+
+   ```rust
+   pub fn deref(self) -> &'static mut [u8; PAGE_SIZE] //转变为虚拟地址之后调用虚拟地址的deref
+   pub fn levels(self) -> [usize; 3] //得到一、二、三级页号
+   ```
+
+   `PhysicalPageNumber`函数:
+
+   ```rust
+   pub fn deref_kernel(self) -> &'static mut [u8; PAGE_SIZE] //转变为物理地址之后调用物理地址的deref_kernel()函数,这个函数里又把物理地址变为虚拟地址,再调用虚拟地址的deref. 套娃石锤
+   ```
+
+   

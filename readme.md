@@ -808,3 +808,169 @@ test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 8 filtered out
 
 
 明天正式开始写自己的伙伴系统算法
+
+
+
+
+
+
+
+## 2020年7月14日11:31:07
+
+一个上午, 没有怎么休息, 把伙伴系统写好了。 也不能说是自己写的吧，大部分都是借鉴了陈嘉杰学长的代码， 然后自己修改一下接口， 就移到lab2里了。
+
+
+
+现在自己对堆、页表这些概念感到十分的模糊， 没有搞清楚他们之间的关系， 今天后半部分学一下os， 理清他们之间的关系。 然后明天开始做lab3
+
+
+
+2020年7月14日21:37:54 
+
+看了os
+
+
+
+
+
+
+
+## 2020年7月15日10:55:59
+
+在实验三中, 相对于实验二的改变有: 
+
+在linker.ld中,  将存放的基地址改为虚拟地址, 并且把数据段都对齐到了4kB, 这样可以保证这一个页的属性是一致的, 否则一个页中如果有两个段的话, 可能一个段是可写的,另一个段不可写, 这样无法标注属性
+
+
+
+2020年7月15日15:16:06
+
+再看代码源码的时候, 看到代码里的生命周期和宏定义还是不熟悉, 今天把这两部分再过一遍.
+
+
+
+
+
+`cargo rustc -- -Z unstable-options --pretty=expanded`可以查看宏展开后的样子(如果文件是cargo生成的二进制包0
+
+`rustc -Z unstable-options --pretty=expanded main.rs`如果是单独的文件
+
+
+
+
+
+
+
+![image-20200715160923998](../images/readme/image-20200715160923998.png)
+
+
+
+
+
+
+
+## 2020年7月16日11:54:42
+
+关于address.rs的一些框架理解.
+
+
+
+四大基本类型:
+
+`VirtualAddress`
+
+`PhysicalAddress`
+
+`VirtualPageNumber`
+
+`PhysicalPageNumber`
+
+
+
+1. mut指针和const指针可以通过`from`变为`VirtualAddress`
+
+2. `VirtualPageNumber`和`PhysicalPageNumber`可以通过`from`互相转换
+
+3. `address.rs`中实现了两个宏, 第一个宏为基本类型添加了`From trait`, 可以从页号变为地址也可以从地址变为页号（物理虚拟都可以）
+
+4. 第二个宏为四个基本类型重载了一些算术运算的操作符
+
+   
+
+   万物之源`VirtualAddress`函数:
+
+   ```rust
+   pub fn deref<T>(self) -> &'static mut T
+   pub fn page_offset(&self) -> usize
+   ```
+
+   `PhysicalAddress`函数:
+
+   ```rust
+   pub fn deref_kernel<T>(self) -> &'static mut T //转变为虚拟地址后调用虚拟地址的deref
+   pub fn page_offset(&self) -> usize
+   ```
+
+   `VirtualPageNumber`函数:
+
+   ```rust
+   pub fn deref(self) -> &'static mut [u8; PAGE_SIZE] //转变为虚拟地址之后调用虚拟地址的deref
+   pub fn levels(self) -> [usize; 3] //得到一、二、三级页号
+   ```
+
+   `PhysicalPageNumber`函数:
+
+   ```rust
+   pub fn deref_kernel(self) -> &'static mut [u8; PAGE_SIZE] //转变为物理地址之后调用物理地址的deref_kernel()函数,这个函数里又把物理地址变为虚拟地址,再调用虚拟地址的deref. 套娃石锤
+   ```
+
+   
+
+   
+
+   
+
+   
+
+   ### 2020年7月16日15:57:50
+
+   root_table是根页表, 通过vpn3找到第二级页表所在的位置
+
+   
+
+   ```rust
+       /// 找到给定虚拟页号的三级页表项
+       ///
+       /// 如果找不到对应的页表项，则会相应创建页表
+       pub fn find_entry(&mut self, vpn: VirtualPageNumber) -> MemoryResult<&mut PageTableEntry> {
+           // 从根页表开始向下查询
+           // 这里不用 self.page_tables[0] 避免后面产生 borrow-check 冲突（我太菜了）
+           let root_table: &mut PageTable = PhysicalAddress::from(self.root_ppn).deref_kernel();
+           let mut entry = &mut root_table.entries[vpn.levels()[0]];
+           for vpn_slice in &vpn.levels()[1..] {
+               if entry.is_empty() {
+                   // 如果页表不存在，则需要分配一个新的页表
+                   let new_table = PageTableTracker::new(FRAME_ALLOCATOR.lock().alloc()?);
+                   let new_ppn = new_table.page_number();
+                   // 将新页表的页号写入当前的页表项
+                   *entry = PageTableEntry::new(new_ppn, Flags::VALID);
+                   // 保存页表
+                   self.page_tables.push(new_table);
+               }
+               // 进入下一级页表（使用偏移量来访问物理地址）
+               entry = &mut entry.get_next_table().entries[*vpn_slice];
+           }
+           // 此时 entry 位于第三级页表
+           Ok(entry)
+       }
+   ```
+
+   
+
+   
+
+   ### 2020年7月16日20:23:05
+
+   机器学习概论的考试取消了, 改成了报告和实验, 开心。 今天晚上做机器学习的实验
+
+   
