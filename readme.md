@@ -986,3 +986,13 @@ test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 8 filtered out
 ![未命名文件](../images/readme/%E6%9C%AA%E5%91%BD%E5%90%8D%E6%96%87%E4%BB%B6.png)
 
 ![image-20200717093948919](../images/readme/image-20200717093948919.png)
+
+
+
+
+
+
+
+## 2020年7月18日22:08:25
+
+今天在写学校的实验. 机器学习
