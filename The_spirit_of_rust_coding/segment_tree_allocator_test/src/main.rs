@@ -1,4 +1,6 @@
 use bit_field::BitArray;
+use bitflags::_core::cmp::min;
+
 fn main() {
     // println!("Hello, world!");
     //
@@ -12,13 +14,13 @@ fn main() {
     //
     // t.dealloc(1);
 
-    let mut a = vec![1u8,2u8,3u8];
-    a.set_bit(4,true);
-    println!("{:?}",a);
-    println!("{:?}",a.get_bit(9));
-    println!("{:?}",a.get_bit(14));
-    println!("{:?}",a.get_bit(15));
-    println!("{:?}",a.get_bit(16));
+    // let mut a = vec![1u8,2u8,3u8];
+    // a.set_bit(4,true);
+    // println!("{:?}",a);
+    // println!("{:?}",a.get_bit(9));
+    // println!("{:?}",a.get_bit(14));
+    // println!("{:?}",a.get_bit(15));
+    // println!("{:?}",a.get_bit(16));
 
     // let mut t = SegmentTree::new(6);
     // t.alloc();
@@ -29,7 +31,6 @@ fn main() {
     //
     //
     // t.dealloc(1);
-
 
 
 }
