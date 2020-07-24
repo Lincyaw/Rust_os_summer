@@ -396,7 +396,7 @@ fn main() {
 
 关于这个问题:
 
-![image-20200707094603400](../images/readme/image-20200707094603400.png)
+![image-20200707094603400](images/readme/image-20200707094603400.png)
 
 scause和stval传给a1和a2只是为了传递参数, 并没有保存到栈中。
 
@@ -861,7 +861,7 @@ test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 8 filtered out
 
 
 
-![image-20200715160923998](../images/readme/image-20200715160923998.png)
+![image-20200715160923998](images/readme/image-20200715160923998.png)
 
 
 
@@ -983,9 +983,9 @@ test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 8 filtered out
 
 
 
-![未命名文件](../images/readme/%E6%9C%AA%E5%91%BD%E5%90%8D%E6%96%87%E4%BB%B6.png)
+![未命名文件](images/readme/%E6%9C%AA%E5%91%BD%E5%90%8D%E6%96%87%E4%BB%B6.png)
 
-![image-20200717093948919](../images/readme/image-20200717093948919.png)
+![image-20200717093948919](images/readme/image-20200717093948919.png)
 
 
 
